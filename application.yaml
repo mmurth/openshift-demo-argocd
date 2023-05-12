@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/mmurth/openshift-demo/
+    repoURL: https://github.com/mmurth/openshift-demo-argocd/
     targetRevision: HEAD
-    path: argocd/dev
+    path: dev
   destination:
     namespace: default
     server: https://kubernetes.default.svc
