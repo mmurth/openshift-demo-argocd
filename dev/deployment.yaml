@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openshift-demo-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: openshift-demo-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: openshift-demo-app
+    spec:
+      containers:
+      - name: openshift-demo-app
+        image: martinmurthbrz/openshift-demo-app:20230511-1523
+        ports:
+        - containerPort: 8080
+        env:
+        - name: OSD_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: osd-secret
+              key: osd_username
+        - name: OSD_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: osd-secret
+              key: osd_password
